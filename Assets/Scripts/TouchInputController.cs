@@ -13,11 +13,13 @@ public class TouchInputController : MonoBehaviour
     private float newTime;
     private Vector3 touchPosition;
     private Vector3 touchToWorldPosition;
+    private Grid grid;
 
 
     void Start()
     {
         navigationController = GetComponent<NavigationController>();
+        grid = GameObject.Find("Grid").GetComponent<Grid>();
     }
 
     void Update()
@@ -39,17 +41,24 @@ public class TouchInputController : MonoBehaviour
             else if (tapCount == 2 && Time.time <= newTime)
             {
                 touchToWorldPosition = Camera.main.ScreenToWorldPoint(touchPosition);
-                destination.position = new Vector3 (touchToWorldPosition.x, touchToWorldPosition.y,0);
-                print("Dubble tap");
-                ReserParameters(0);
-            }else if(Time.time > newTime && newTime != 0)
+                destination.position = new Vector3(touchToWorldPosition.x, touchToWorldPosition.y, 0);
+                Collider2D collider2D = Physics2D.OverlapBox(destination.position, new Vector2(0.2f, 0.2f), 0);
+                if (collider2D != null && collider2D.tag != "Walls")
+                {
+                    Debug.Log(collider2D.name);
+                    GetGridScript.Instance.SetObjectToGridCenter(destination);
+                }
+
+                ResetParameters(0);
+            }
+            else if (Time.time > newTime && newTime != 0)
             {
-                ReserParameters(1);
+                ResetParameters(1);
             }
         }
     }
 
-    private void ReserParameters(int newTapCount)
+    private void ResetParameters(int newTapCount)
     {
         tapCount = newTapCount;
         newTime = 0;
