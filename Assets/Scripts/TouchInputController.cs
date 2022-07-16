@@ -41,12 +41,16 @@ public class TouchInputController : MonoBehaviour
             else if (tapCount == 2 && Time.time <= newTime)
             {
                 touchToWorldPosition = Camera.main.ScreenToWorldPoint(touchPosition);
-                destination.position = new Vector3(touchToWorldPosition.x, touchToWorldPosition.y, 0);
-                Collider2D collider2D = Physics2D.OverlapBox(destination.position, new Vector2(0.2f, 0.2f), 0);
-                if (collider2D != null && collider2D.tag != "Walls")
+                Vector3 destinationVector = new Vector3(touchToWorldPosition.x, touchToWorldPosition.y, 0);
+                Collider2D collider2D = Physics2D.OverlapBox(destinationVector, new Vector2(0.2f, 0.2f), 0);
+                if (collider2D != null)
                 {
-                    Debug.Log(collider2D.name);
-                    GetGridScript.Instance.SetObjectToGridCenter(destination);
+                    if (collider2D.tag != "Walls")
+                    {
+                        destination.position = destinationVector;
+                        Debug.Log(collider2D.name);
+                        GetGridScript.Instance.SetObjectToGridCenter(destination);
+                    }
                 }
 
                 ResetParameters(0);
