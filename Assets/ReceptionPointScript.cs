@@ -14,25 +14,26 @@ public class ReceptionPointScript : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y, GetGridScript.Instance.GetZ());
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("Collision!");
         if (!customerIsHere)
         {
             if (collision.tag == "Customer")
             {
                 customerIsHere = true;
+                customer = collision.gameObject;
             }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit(Collider collision)
     {
         if (customerIsHere)
         {
             if (collision.tag == "Customer")
             {
                 customerIsHere = false;
+                customer = null;
             }
         }
     }

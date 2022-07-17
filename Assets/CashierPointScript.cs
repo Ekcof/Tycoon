@@ -9,20 +9,31 @@ public class CashierPointScript : MonoBehaviour
     private ReceptionPointScript receptionPointScript;
     private GameObject customer;
     private float distanceToCashier;
+    private bool isServing;
+    private GameObject canvas;
+    private GameObject swipeImage;
+    private CardScript cardScript;
+    private CustomerScript customerScript;
 
 
     private void Awake()
     {
         receptionPointScript = receptionPoint.GetComponent<ReceptionPointScript>();
+        canvas = GameObject.Find("Canvas");
+        if (canvas != null)
+        {
+            swipeImage = canvas.transform.Find("SwipeImage").gameObject;
+        }
     }
 
-    private void Update()
+
+    private void OnTriggerStay(Collider collision)
     {
-        distanceToCashier = Vector3.Distance(cashier.transform.position, transform.position);
-        if (distanceToCashier < 0.5f)
+        if (!isServing)
         {
             if (receptionPointScript.CustomerIsHere)
             {
+                isServing = true;
                 Serve(receptionPointScript.GetCustomer());
             }
         }
@@ -30,9 +41,16 @@ public class CashierPointScript : MonoBehaviour
 
     private void Serve(GameObject customer)
     {
-        if (customer != null)
+        if (customer != null && swipeImage != null)
         {
-            Debug.Log("notNull");
+            Time.timeScale = 0;
+            swipeImage.SetActive(true);
+            customerScript = customer.GetComponent<CustomerScript>();
+            if (customerScript != null)
+            {
+                cardScript = swipeImage.GetComponent<CardScript>();
+                if (cardScript != null) cardScript.SetCustomerScript(customerScript);
+            }
         }
     }
 }

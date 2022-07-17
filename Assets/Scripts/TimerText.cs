@@ -47,4 +47,5 @@ public class TimerText : MonoBehaviour
 
         return (hoursToString + ":" + minutesToString + lastPart);
     }
+
 }

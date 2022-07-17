@@ -77,8 +77,7 @@ public class CanvasInput : MonoBehaviour
         {
             //TODO : Take away the card from player!
             if (direction == -1) CancelCard();
-            if (direction == 1) card.SetActive(false); IsSwiped = true;
-            Debug.Log("Good Swipe!");
+            if (direction == 1) AcceptCard();
         }
 
     }
@@ -96,9 +95,16 @@ public class CanvasInput : MonoBehaviour
     private void CancelCard()
     {
         ResetPosition();
-        //endPos = touch.position;
-        //swipeMove = endPos - startPos;
         cardScript.CancelCard();
+        IsSwiped = false;
+    }
+
+    private void AcceptCard()
+    {
+        card.SetActive(false);
+        IsSwiped = true;
+        ResetPosition();
+        cardScript.AcceptCard();
         IsSwiped = false;
     }
 

@@ -48,7 +48,6 @@ public class TouchInputController : MonoBehaviour
                     if (collider2D.tag != "Walls")
                     {
                         destination.position = destinationVector;
-                        Debug.Log(collider2D.name);
                         GetGridScript.Instance.SetObjectToGridCenter(destination);
                     }
                 }

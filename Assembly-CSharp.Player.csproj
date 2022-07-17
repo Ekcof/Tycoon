@@ -53,15 +53,18 @@
     <UnityVersion>2020.3.23f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\GetGridScript.cs" />
     <Compile Include="Assets\Scripts\CardScript.cs" />
+    <Compile Include="Assets\ReceptionPointScript.cs" />
     <Compile Include="Assets\Scripts\CustomerScript.cs" />
     <Compile Include="Assets\Scripts\TouchInputController.cs" />
+    <Compile Include="Assets\CashierPointScript.cs" />
     <Compile Include="Assets\Scripts\CanvasInput.cs" />
+    <Compile Include="Assets\Scripts\GridCursorScript.cs" />
     <Compile Include="Assets\Scripts\TimerText.cs" />
     <Compile Include="Assets\Scripts\NavigationController.cs" />
     <Compile Include="Assets\Scripts\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\SpawnCustomerScript.cs" />
-    <Compile Include="Assets\GridPositionScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

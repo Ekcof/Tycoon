@@ -8,6 +8,7 @@ public class CardScript : MonoBehaviour
     [SerializeField] Text numberText;
     [SerializeField] private CanvasInput canvasInput;
     private int cardNumber;
+    private CustomerScript customerScript;
 
     private int prevNumber;
 
@@ -15,6 +16,11 @@ public class CardScript : MonoBehaviour
     {
         canvasInput = GetComponentInParent<CanvasInput>();
         RandomizeCardNumber();
+    }
+
+    public void SetCustomerScript(CustomerScript newCustomerScript)
+    {
+        customerScript = newCustomerScript;
     }
 
     public int CardNumber
@@ -29,9 +35,19 @@ public class CardScript : MonoBehaviour
         RandomizeCardNumber();
     }
 
-    public void AssetCard()
+    public void AcceptCard()
     {
-
+        if (customerScript != null)
+        {
+            if (customerScript.GetDesire() == cardNumber)
+            {
+                customerScript.SetMood(2);
+            }
+            else
+            {
+                customerScript.SetMood(0);
+            }
+        }
     }
 
     public void RandomizeCardNumber()

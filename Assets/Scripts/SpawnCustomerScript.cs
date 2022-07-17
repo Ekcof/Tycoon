@@ -7,6 +7,7 @@ public class SpawnCustomerScript : MonoBehaviour
     [SerializeField] private GameObject prefab;
     [SerializeField] private int CustomerLimit;
     [SerializeField] private GameObject receptionObject;
+    private CustomerScript customerScript;
 
     // Start is called before the first frame update
     private void Awake()
@@ -14,10 +15,16 @@ public class SpawnCustomerScript : MonoBehaviour
         CreateCustomer();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        customerScript = other.GetComponent<CustomerScript>();
+        if(customerScript != null)
+        {
+            if (customerScript.IsServed)
+            {
+                Destroy(other.gameObject);
+            }
+        }
     }
 
     private void CreateCustomer()

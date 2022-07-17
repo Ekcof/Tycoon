@@ -10,15 +10,17 @@ public class GetGridScript : MonoBehaviour
     private Transform greenFrame;
     private Grid grid;
 
-    
+
     #region Singleton
     private void Start()
     {
         Instance = this;
         grid = GameObject.Find("Grid").GetComponent<Grid>();
         player = GameObject.Find("Cashier01").transform;
-        if(player == null) { player = GameObject.Find("Player").transform;}
-        Debug.Log(player.name);
+        if (player == null)
+        {
+            player = GameObject.Find("Player").transform;
+        }
     }
     #endregion
 
