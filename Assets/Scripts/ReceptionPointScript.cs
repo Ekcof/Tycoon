@@ -6,7 +6,7 @@ public class ReceptionPointScript : MonoBehaviour
 {
     private GameObject customer;
     private bool customerIsHere = false;
-    private float distanceToCustomer;
+    private bool customerIsServed = false;
 
 
     private void Update()
@@ -47,5 +47,8 @@ public class ReceptionPointScript : MonoBehaviour
     /// Get if there is a customer on the spot
     /// </summary>
     public bool CustomerIsHere { get { return customerIsHere; } set { customerIsHere = value; } }
+
+
+    public bool CustomerIsServed { get { return customerIsServed; } set { customerIsServed = value; } }
 
 }

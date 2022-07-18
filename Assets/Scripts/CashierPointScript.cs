@@ -8,6 +8,7 @@ public class CashierPointScript : MonoBehaviour
     [SerializeField] private GameObject cashier;
     private ReceptionPointScript receptionPointScript;
     private GameObject customer;
+    private GameObject newCustomer;
     private float distanceToCashier;
     private bool isServing;
     private GameObject canvas;
@@ -29,15 +30,16 @@ public class CashierPointScript : MonoBehaviour
 
     private void OnTriggerStay(Collider collision)
     {
-        if (!isServing)
+        if (customer == null)
         {
             if (receptionPointScript.CustomerIsHere)
             {
-                isServing = true;
-                Serve(receptionPointScript.GetCustomer());
+                customer = receptionPointScript.GetCustomer();
+                Serve(customer);
             }
         }
     }
+
 
     private void Serve(GameObject customer)
     {
@@ -52,5 +54,6 @@ public class CashierPointScript : MonoBehaviour
                 if (cardScript != null) cardScript.SetCustomerScript(customerScript);
             }
         }
+        //isServing = false;
     }
 }

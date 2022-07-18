@@ -8,24 +8,32 @@ public class SpawnCustomerScript : MonoBehaviour
     [SerializeField] private int CustomerLimit;
     [SerializeField] private GameObject receptionObject;
     private CustomerScript customerScript;
+    private IEnumerator coroutine;
 
-    // Start is called before the first frame update
+
     private void Awake()
     {
         CreateCustomer();
+        coroutine = WaitForNewCustomer(2f);
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
         customerScript = other.GetComponent<CustomerScript>();
-        if(customerScript != null)
+        Debug.Log("Found customer!");
+        if (customerScript != null)
         {
+            Debug.Log("Has script!");
             if (customerScript.IsServed)
             {
+                Debug.Log("Destroy!");
                 Destroy(other.gameObject);
+                StartCoroutine(coroutine);
             }
         }
     }
+
 
     private void CreateCustomer()
     {
@@ -35,5 +43,12 @@ public class SpawnCustomerScript : MonoBehaviour
         {
             customerScript.SetDestination(receptionObject.transform.position);
         }
+    }
+
+
+    private IEnumerator WaitForNewCustomer(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        CreateCustomer();
     }
 }

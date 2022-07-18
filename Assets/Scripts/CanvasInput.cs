@@ -101,11 +101,11 @@ public class CanvasInput : MonoBehaviour
 
     private void AcceptCard()
     {
-        card.SetActive(false);
         IsSwiped = true;
         ResetPosition();
         cardScript.AcceptCard();
         IsSwiped = false;
+        card.SetActive(false);
     }
 
     private void SetAnimationFrame()

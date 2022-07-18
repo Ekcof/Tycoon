@@ -14,9 +14,7 @@ public class CustomerScript : MonoBehaviour
     private Vector2 startPosition;
     private int desire;
     private NavMeshAgent navMeshAgent;
-    private Vector2 sprite_size;
-    private Vector2 local_sprite_size;
-    private Vector3 world_size;
+    private int mood = 1;
 
     private void Awake()
     {
@@ -27,18 +25,15 @@ public class CustomerScript : MonoBehaviour
         navMeshAgent.updateUpAxis = false;
         desire = Random.Range(1, 4);
         SetDesireImage();
-        /*
-        sprite_size = sprite.sprite.rect.size;
-        local_sprite_size = sprite_size / sprite.sprite.pixelsPerUnit;
-        world_size = local_sprite_size;
-        world_size.x *= transform.lossyScale.x;
-        world_size.y *= transform.lossyScale.y;
-        */
     }
 
-
-    public void SetMood(int mood)
+    /// <summary>
+    /// Set the mood after the service
+    /// </summary>
+    /// <param name="newMood"></param>
+    public void SetMood(int newMood)
     {
+        mood = newMood;
         isServed = true;
         Time.timeScale = 1;
         sprite.gameObject.SetActive(true);
@@ -49,6 +44,7 @@ public class CustomerScript : MonoBehaviour
             default: sprite.sprite = goodMood; break;
         }
         SetDestination(startPosition);
+        CanvasResultScript.Instance.CustomerLeave(mood);
     }
 
     public void SetDesireImage()

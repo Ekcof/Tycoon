@@ -9,6 +9,7 @@ public class GetGridScript : MonoBehaviour
     private Transform player;
     private Transform greenFrame;
     private Grid grid;
+    private GameObject canvas;
 
 
     #region Singleton
@@ -16,6 +17,7 @@ public class GetGridScript : MonoBehaviour
     {
         Instance = this;
         grid = GameObject.Find("Grid").GetComponent<Grid>();
+        canvas = GameObject.Find("Canvas");
         player = GameObject.Find("Cashier01").transform;
         if (player == null)
         {

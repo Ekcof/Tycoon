@@ -14,9 +14,11 @@ public class TimerText : MonoBehaviour
     private int period;
     private float realTimeForInGameTime;
     private int minutes;
+    private CanvasResultScript canvasResultScript;
 
     private void Awake()
     {
+        canvasResultScript = GetComponent<CanvasResultScript>();
         period = (endHour - startHour) * 60;
         if (period < 0) period = 0;
         realTimeForInGameTime = (float)realSeconds / period;
@@ -29,7 +31,11 @@ public class TimerText : MonoBehaviour
             minutes = (int)(startHour * 60 + Time.time / realTimeForInGameTime);
             minutes = (int)(minutes - minutes % minuteStep);
         }
-        if (minutes > 1440) minutes = 0;
+        if (minutes > 1440)
+        {
+            minutes = 0;
+            canvasResultScript.Results();
+        }
         timerText.text = TransformMinutesToText();
     }
 
