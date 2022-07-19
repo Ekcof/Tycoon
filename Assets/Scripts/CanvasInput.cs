@@ -75,7 +75,6 @@ public class CanvasInput : MonoBehaviour
         animator.speed = 0;
         if (x > touchPath && y < 50)
         {
-            //TODO : Take away the card from player!
             if (direction == -1) CancelCard();
             if (direction == 1) AcceptCard();
         }
@@ -84,6 +83,7 @@ public class CanvasInput : MonoBehaviour
 
     private void ResetPosition()
     {
+        animPercent = 0;
         endPos = new Vector3(0, 0, 0);
         startPos = new Vector3(0, 0, 0);
         swipeMove = new Vector2(0, 0);
@@ -119,9 +119,9 @@ public class CanvasInput : MonoBehaviour
         {
             clip = leftClip;
         }
-        float clipLenght = clip.length;
+        float clipLength = clip.length;
 
-        float newTime = Mathf.Lerp(0, clipLenght, animPercent);
+        float newTime = Mathf.Lerp(0, clipLength, animPercent);
         animator.Play(clip.name, 0, newTime);
         animator.speed = 1;
 

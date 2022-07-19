@@ -21,14 +21,13 @@ public class SpawnCustomerScript : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         customerScript = other.GetComponent<CustomerScript>();
-        Debug.Log("Found customer!");
         if (customerScript != null)
         {
-            Debug.Log("Has script!");
             if (customerScript.IsServed)
             {
-                Debug.Log("Destroy!");
                 Destroy(other.gameObject);
+                Debug.Log("Wait for new one!");
+                coroutine = WaitForNewCustomer(2f);
                 StartCoroutine(coroutine);
             }
         }

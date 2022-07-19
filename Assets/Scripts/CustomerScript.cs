@@ -47,6 +47,9 @@ public class CustomerScript : MonoBehaviour
         CanvasResultScript.Instance.CustomerLeave(mood);
     }
 
+    /// <summary>
+    /// Set the image with number of desired image
+    /// </summary>
     public void SetDesireImage()
     {
         sprite.gameObject.SetActive(true);
@@ -56,11 +59,19 @@ public class CustomerScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Set the destination point
+    /// </summary>
+    /// <param name="pos"></param>
     public void SetDestination(Vector3 pos)
     {
         navMeshAgent.destination = pos;
     }
 
+    /// <summary>
+    /// Get the desired number
+    /// </summary>
+    /// <returns></returns>
     public int GetDesire()
     {
         return desire;
