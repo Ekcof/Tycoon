@@ -7,16 +7,27 @@ public class SpawnCustomerScript : MonoBehaviour
     [SerializeField] private GameObject prefab;
     [SerializeField] private int CustomerLimit;
     [SerializeField] private GameObject receptionObject;
+    [SerializeField] private float interval = 2f;
     private CustomerScript customerScript;
-    private IEnumerator coroutine;
+    private float newTime;
+    private bool isCustomerSpawned;
 
 
     private void Awake()
     {
         CreateCustomer();
-        coroutine = WaitForNewCustomer(2f);
     }
 
+    private void Update()
+    {
+        if (!isCustomerSpawned)
+        {
+            if (newTime < Time.time)
+            {
+                CreateCustomer();
+            }
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -25,10 +36,10 @@ public class SpawnCustomerScript : MonoBehaviour
         {
             if (customerScript.IsServed)
             {
+                newTime = Time.time + interval;
+                   isCustomerSpawned = false;
                 Destroy(other.gameObject);
-                Debug.Log("Wait for new one!");
-                coroutine = WaitForNewCustomer(2f);
-                StartCoroutine(coroutine);
+
             }
         }
     }
@@ -36,6 +47,7 @@ public class SpawnCustomerScript : MonoBehaviour
 
     private void CreateCustomer()
     {
+        isCustomerSpawned = true;
         GameObject instantiatedCustomer = Instantiate(prefab, transform.position, transform.rotation);
         CustomerScript customerScript = instantiatedCustomer.GetComponent<CustomerScript>();
         if (customerScript != null)
@@ -44,10 +56,4 @@ public class SpawnCustomerScript : MonoBehaviour
         }
     }
 
-
-    private IEnumerator WaitForNewCustomer(float waitTime)
-    {
-        yield return new WaitForSeconds(waitTime);
-        CreateCustomer();
-    }
 }

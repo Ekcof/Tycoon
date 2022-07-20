@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CashierPointScript : MonoBehaviour
 {
@@ -46,7 +47,10 @@ public class CashierPointScript : MonoBehaviour
         if (customer != null && swipeImage != null)
         {
             Time.timeScale = 0;
-            swipeImage.SetActive(true);
+            Image image = swipeImage.GetComponent<Image>();
+            image.enabled = true;
+            CanvasResultScript.Instance.SetActiveAllChildren(swipeImage.transform, true);
+            //swipeImage.SetActive(true);
             customerScript = customer.GetComponent<CustomerScript>();
             if (customerScript != null)
             {

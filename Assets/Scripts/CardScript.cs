@@ -9,7 +9,6 @@ public class CardScript : MonoBehaviour
     [SerializeField] private CanvasInput canvasInput;
     private int cardNumber;
     private CustomerScript customerScript;
-
     private int prevNumber;
 
     private void Awake()
@@ -52,13 +51,16 @@ public class CardScript : MonoBehaviour
     {
         if (customerScript != null)
         {
-            if (customerScript.GetDesire() == cardNumber)
+            if (!customerScript.IsServed)
             {
-                customerScript.SetMood(2);
-            }
-            else
-            {
-                customerScript.SetMood(0);
+                if (customerScript.GetDesire() == cardNumber)
+                {
+                    customerScript.SetMood(2);
+                }
+                else
+                {
+                    customerScript.SetMood(0);
+                }
             }
         }
     }

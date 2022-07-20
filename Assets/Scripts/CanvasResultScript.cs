@@ -61,6 +61,16 @@ public class CanvasResultScript : MonoBehaviour
         gainText.text += totalGain.ToString();
     }
 
+    public void SetActiveAllChildren(Transform transform, bool value)
+    {
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(value);
+
+            SetActiveAllChildren(child, value);
+        }
+    }
+
     private void ChangeRatingAndMoney(int addRating, int addMoney)
     {
         money += addMoney;
@@ -71,7 +81,8 @@ public class CanvasResultScript : MonoBehaviour
 
     private void RefreshCanvasData()
     {
-        currentMoneyText.text = money.ToString();
-        currentRatingText.text = rating.ToString();
+        currentMoneyText.text = "$" + money.ToString();
+        currentRatingText.text = rating.ToString() + "%";
     }
+
 }

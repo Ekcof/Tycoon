@@ -156,6 +156,7 @@ MonoBehaviour:
   prefab: {fileID: 4530420556905683789, guid: 05872ca3ef7dc5c43a11694df7a90c91, type: 3}
   CustomerLimit: 0
   receptionObject: {fileID: 931581108}
+  interval: 2
 --- !u!4 &41635085
 Transform:
   m_ObjectHideFlags: 0
@@ -875,7 +876,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &565118775
 RectTransform:
   m_ObjectHideFlags: 0
@@ -903,7 +904,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565118774}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1138,7 +1139,7 @@ MonoBehaviour:
   rentText: {fileID: 161004465}
   gainText: {fileID: 1712313164}
   ratingText: {fileID: 1746654579}
-  rating: 0
+  rating: 50
   priceTag: 10
   rent: 50
 --- !u!1 &624645401
@@ -2271,7 +2272,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1291243564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2403,7 +2404,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 80%
+  m_Text: 50%
 --- !u!222 &1333583475
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4612,7 +4613,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: $100
+  m_Text: $0
 --- !u!222 &1714172787
 CanvasRenderer:
   m_ObjectHideFlags: 0

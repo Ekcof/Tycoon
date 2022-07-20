@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CanvasInput : MonoBehaviour
 {
@@ -19,20 +20,21 @@ public class CanvasInput : MonoBehaviour
     private float animPercent;
     public bool IsSwiped { get; set; }
     private AnimationClip clip;
+    private Image image;
 
 
     private void Awake()
     {
         cardScript = card.GetComponent<CardScript>();
         animator = card.GetComponent<Animator>();
-        touchPath = Screen.width / 5;
+        image = card.GetComponent<Image>();
+        touchPath = Screen.width / 8;
     }
 
     private void Update()
     {
-        if (card.activeSelf)
-        {
-            AnimateCard();
+
+        AnimateCard();
             if (Input.touchCount > 0 && !IsSwiped)
             {
                 touch = Input.GetTouch(0);
@@ -44,7 +46,7 @@ public class CanvasInput : MonoBehaviour
                 IsSwiped = false;
                 ResetPosition();
             }
-        }
+
     }
 
 
@@ -58,14 +60,11 @@ public class CanvasInput : MonoBehaviour
     {
         switch (touch.phase)
         {
-            case TouchPhase.Moved:
-                endPos = touch.position;
-                swipeMove = endPos - startPos; break;
-            case TouchPhase.Canceled:
-                endPos = touch.position;
-                swipeMove = endPos - startPos; break;
             case TouchPhase.Began:
                 endPos = startPos; break;
+            default:
+                endPos = touch.position;
+                swipeMove = endPos - startPos; break;
         }
 
         animPercent = Mathf.Abs(swipeMove.x / touchPath);
@@ -73,7 +72,7 @@ public class CanvasInput : MonoBehaviour
         float x = Mathf.Abs(swipeMove.x);
         float y = Mathf.Abs(swipeMove.y);
         animator.speed = 0;
-        if (x > touchPath && y < 50)
+        if (x > touchPath && y < 100)
         {
             if (direction == -1) CancelCard();
             if (direction == 1) AcceptCard();
@@ -105,7 +104,9 @@ public class CanvasInput : MonoBehaviour
         ResetPosition();
         cardScript.AcceptCard();
         IsSwiped = false;
-        card.SetActive(false);
+        //card.SetActive(false);
+        image.enabled = false;
+        CanvasResultScript.Instance.SetActiveAllChildren(image.transform, false);
     }
 
     private void SetAnimationFrame()
