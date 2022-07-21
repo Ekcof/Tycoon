@@ -50,6 +50,7 @@ public class CashierPointScript : MonoBehaviour
             Image image = swipeImage.GetComponent<Image>();
             image.enabled = true;
             CanvasResultScript.Instance.SetActiveAllChildren(swipeImage.transform, true);
+            TouchInputController.Instance.BlockControl = true;
             //swipeImage.SetActive(true);
             customerScript = customer.GetComponent<CustomerScript>();
             if (customerScript != null)

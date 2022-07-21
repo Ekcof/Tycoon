@@ -7,6 +7,7 @@ public class CanvasResultScript : MonoBehaviour
 {
     public static CanvasResultScript Instance;
     [SerializeField] private GameObject endPanel;
+    [SerializeField] private Text clientsText;
     [SerializeField] private Text currentMoneyText;
     [SerializeField] private Text currentRatingText;
     [SerializeField] private Text dailyText;
@@ -16,6 +17,7 @@ public class CanvasResultScript : MonoBehaviour
     [SerializeField] private int rating = 50;
     [SerializeField] private int priceTag = 10;
     [SerializeField] private int rent = 50;
+    private int clients;
     private int money;
     private int revenue;
     private int ratingChange;
@@ -30,6 +32,7 @@ public class CanvasResultScript : MonoBehaviour
 
     private void Awake()
     {
+        clients = 0;
         revenue = 0;
         ratingChange = 0;
         totalGain = 0;
@@ -41,9 +44,10 @@ public class CanvasResultScript : MonoBehaviour
     /// <param name="mood"></param>
     public void CustomerLeave(int mood)
     {
+        ++clients;
         switch (mood)
         {
-            case 0: ChangeRatingAndMoney(-priceTag / 2, -priceTag); break;
+            case 0: ChangeRatingAndMoney(-priceTag, -priceTag / 2); break;
             case 1: ChangeRatingAndMoney(0, priceTag / 2); break;
             case 2: ChangeRatingAndMoney(priceTag / 2, priceTag); break;
         }
@@ -55,6 +59,7 @@ public class CanvasResultScript : MonoBehaviour
         endPanel.SetActive(true);
         Time.timeScale = 0;
         totalGain = revenue - rent;
+        clientsText.text += clients.ToString();
         dailyText.text += revenue.ToString();
         ratingText.text += rating.ToString();
         rentText.text += rent.ToString();

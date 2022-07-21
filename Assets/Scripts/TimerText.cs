@@ -10,19 +10,22 @@ public class TimerText : MonoBehaviour
     [SerializeField] private int endHour;
     [SerializeField] private int realSeconds;
     [SerializeField] private int minuteStep = 5;
+
+    public static TimerText Instance;
     private int scriptTime = 0;
     private int period;
     private float realTimeForInGameTime;
     private int minutes;
-    private CanvasResultScript canvasResultScript;
 
+    #region Singleton
     private void Awake()
     {
-        canvasResultScript = GetComponent<CanvasResultScript>();
+        Instance = this;
         period = (endHour - startHour) * 60;
         if (period < 0) period = 0;
         realTimeForInGameTime = (float)realSeconds / period;
     }
+    #endregion
 
     private void FixedUpdate()
     {
@@ -31,10 +34,13 @@ public class TimerText : MonoBehaviour
             minutes = (int)(startHour * 60 + Time.time / realTimeForInGameTime);
             minutes = (int)(minutes - minutes % minuteStep);
         }
+        if (minutes >= endHour * 60)
+        {
+            CanvasResultScript.Instance.Results();
+        }
         if (minutes > 1440)
         {
             minutes = 0;
-            canvasResultScript.Results();
         }
         timerText.text = TransformMinutesToText();
     }

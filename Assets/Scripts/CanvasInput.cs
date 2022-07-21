@@ -107,6 +107,7 @@ public class CanvasInput : MonoBehaviour
         //card.SetActive(false);
         image.enabled = false;
         CanvasResultScript.Instance.SetActiveAllChildren(image.transform, false);
+        TouchInputController.Instance.BlockControl = false;
     }
 
     private void SetAnimationFrame()
