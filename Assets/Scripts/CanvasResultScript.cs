@@ -54,18 +54,46 @@ public class CanvasResultScript : MonoBehaviour
         RefreshCanvasData();
     }
 
+    /// <summary>
+    /// Sum up the results of the work day
+    /// </summary>
     public void Results()
     {
         endPanel.SetActive(true);
         Time.timeScale = 0;
         totalGain = revenue - rent;
         clientsText.text += clients.ToString();
+
+        string dailyString = revenue.ToString();
+        if (revenue >= 0)
+        {
+            dailyString = "$" + dailyString;
+        }
+        else
+        {
+            dailyString = "-$" + dailyString;
+        }
+
         dailyText.text += revenue.ToString();
         ratingText.text += rating.ToString();
         rentText.text += rent.ToString();
-        gainText.text += totalGain.ToString();
+
+        string totalgainString = totalGain.ToString();
+        if (totalGain >= 0)
+        {
+            totalgainString = "$" + totalgainString;
+        }
+        else{
+            totalgainString = "-$" + totalgainString;
+        }
+        gainText.text += totalgainString;
     }
 
+    /// <summary>
+    /// Set active all children gameobjects
+    /// </summary>
+    /// <param name="transform"></param>
+    /// <param name="value"></param>
     public void SetActiveAllChildren(Transform transform, bool value)
     {
         foreach (Transform child in transform)
@@ -76,6 +104,11 @@ public class CanvasResultScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// add or subtract rating and money after client has been served
+    /// </summary>
+    /// <param name="addRating"></param>
+    /// <param name="addMoney"></param>
     private void ChangeRatingAndMoney(int addRating, int addMoney)
     {
         money += addMoney;
@@ -84,6 +117,9 @@ public class CanvasResultScript : MonoBehaviour
         if (rating < 0) rating = 0;
     }
 
+    /// <summary>
+    /// Refresh the digits on the top of the screen
+    /// </summary>
     private void RefreshCanvasData()
     {
         currentMoneyText.text = "$" + money.ToString();
