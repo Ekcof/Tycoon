@@ -45,6 +45,10 @@ public class TimerText : MonoBehaviour
         timerText.text = TransformMinutesToText();
     }
 
+    /// <summary>
+    /// Transform total amounts minutes to 12-hour clock
+    /// </summary>
+    /// <returns></returns>
     private string TransformMinutesToText()
     {
         int hours = minutes / 60;

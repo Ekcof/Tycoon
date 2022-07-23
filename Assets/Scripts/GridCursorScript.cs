@@ -9,12 +9,6 @@ public class GridCursorScript : MonoBehaviour
     [SerializeField] private GameObject GreenFrameImageGameObject;
     private string currentTag;
 
-    private void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     private void Update()
     {
         if(Physics2D.OverlapPoint(transform.position)!=null) currentTag = Physics2D.OverlapPoint(transform.position).tag;
@@ -26,6 +20,10 @@ public class GridCursorScript : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Set cursor image over the grid
+    /// </summary>
+    /// <param name="imageGO"></param>
     private void SetImage(GameObject imageGO)
     {
         foreach (Transform child in transform)
