@@ -6,6 +6,9 @@ public class GlobalControl : MonoBehaviour
 {
     public int level;
     public int[] levelRating;
+    public int money;
+    public int rating;
+    public int day;
 
     public static GlobalControl Instance;
 
