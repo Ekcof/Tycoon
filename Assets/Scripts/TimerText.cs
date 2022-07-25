@@ -24,6 +24,7 @@ public class TimerText : MonoBehaviour
         period = (endHour - startHour) * 60;
         if (period < 0) period = 0;
         realTimeForInGameTime = (float)realSeconds / period;
+        minutes = 0;
     }
     #endregion
 
@@ -31,18 +32,19 @@ public class TimerText : MonoBehaviour
     {
         if (minuteStep > 0)
         {
-            minutes = (int)(startHour * 60 + Time.time / realTimeForInGameTime);
+            minutes = (int)(startHour * 60 + Time.timeSinceLevelLoad / realTimeForInGameTime);
             minutes = (int)(minutes - minutes % minuteStep);
-        }
-        if (minutes >= endHour * 60)
-        {
-            CanvasResultScript.Instance.Results();
         }
         if (minutes > 1440)
         {
             minutes = 0;
         }
         timerText.text = TransformMinutesToText();
+        if (minutes >= endHour * 60)
+        {
+            minutes = 0;
+            CanvasResultScript.Instance.Results();
+        }
     }
 
     /// <summary>

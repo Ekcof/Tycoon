@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CanvasResultScript : MonoBehaviour
 {
     public static CanvasResultScript Instance;
     [SerializeField] private GameObject endPanel;
+    [SerializeField] private Text dayText;
     [SerializeField] private Text clientsText;
     [SerializeField] private Text currentMoneyText;
     [SerializeField] private Text currentRatingText;
@@ -22,21 +24,26 @@ public class CanvasResultScript : MonoBehaviour
     private int revenue;
     private int ratingChange;
     private int totalGain;
+    private int day;
 
     #region Singleton
-    private void Start()
-    {
-        Instance = this;
-    }
-    #endregion
-
     private void Awake()
     {
+        Time.timeScale = 1;
+        Instance = this;
         clients = 0;
         revenue = 0;
         ratingChange = 0;
         totalGain = 0;
+        if (GlobalControl.Instance)
+        {
+            rating = GlobalControl.Instance.Rating;
+            money = GlobalControl.Instance.Money;
+            day = GlobalControl.Instance.Day;
+        }
+        RefreshCanvasData();
     }
+    #endregion
 
     /// <summary>
     /// Take the money and rating after customer left cashier
@@ -62,31 +69,20 @@ public class CanvasResultScript : MonoBehaviour
         endPanel.SetActive(true);
         Time.timeScale = 0;
         totalGain = revenue - rent;
+        dayText.text += day.ToString();
         clientsText.text += clients.ToString();
-
-        string dailyString = revenue.ToString();
-        if (revenue >= 0)
-        {
-            dailyString = "$" + dailyString;
-        }
-        else
-        {
-            dailyString = "-$" + dailyString;
-        }
-
-        dailyText.text += revenue.ToString();
-        ratingText.text += rating.ToString();
+        dailyText.text += DollarToString(revenue);
+        ratingText.text += ratingChange.ToString();
         rentText.text += rent.ToString();
+        gainText.text += DollarToString(totalGain);
 
-        string totalgainString = totalGain.ToString();
-        if (totalGain >= 0)
-        {
-            totalgainString = "$" + totalgainString;
-        }
-        else{
-            totalgainString = "-$" + totalgainString;
-        }
-        gainText.text += totalgainString;
+        ++day;
+        money -= rent;
+        
+        GlobalControl.Instance.Rating = rating;
+        GlobalControl.Instance.Money = money;
+        GlobalControl.Instance.Day = day;
+        RefreshCanvasData();
     }
 
     /// <summary>
@@ -102,6 +98,11 @@ public class CanvasResultScript : MonoBehaviour
 
             SetActiveAllChildren(child, value);
         }
+    }
+
+    public void RestartDay()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     /// <summary>
@@ -124,6 +125,21 @@ public class CanvasResultScript : MonoBehaviour
     {
         currentMoneyText.text = "$" + money.ToString();
         currentRatingText.text = rating.ToString() + "%";
+    }
+
+    /// <summary>
+    /// Convert number of dollars to string
+    /// </summary>
+    /// <param name="number"></param>
+    /// <returns></returns>
+    private string DollarToString (int number)
+    {
+        string newString = "$" + number.ToString();
+        if (number < 0)
+        {
+            newString = "-$" + Mathf.Abs(number);
+        }
+        return newString;
     }
 
 }

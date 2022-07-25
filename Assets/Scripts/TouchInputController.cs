@@ -18,7 +18,7 @@ public class TouchInputController : MonoBehaviour
     private bool blockControl;
 
     #region Singleton
-    void Start()
+    private void Awake()
     {
         Instance = this;
         navigationController = GetComponent<NavigationController>();
@@ -26,7 +26,7 @@ public class TouchInputController : MonoBehaviour
     }
     #endregion
 
-    void Update()
+    private void Update()
     {
         if (!blockControl)
         {

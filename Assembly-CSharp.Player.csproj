@@ -53,6 +53,7 @@
     <UnityVersion>2020.3.23f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\GlobalControl.cs" />
     <Compile Include="Assets\Scripts\GetGridScript.cs" />
     <Compile Include="Assets\Scripts\CardScript.cs" />
     <Compile Include="Assets\Scripts\ReceptionPointScript.cs" />
@@ -61,12 +62,13 @@
     <Compile Include="Assets\Scripts\CashierPointScript.cs" />
     <Compile Include="Assets\Scripts\CanvasInput.cs" />
     <Compile Include="Assets\Scripts\GridCursorScript.cs" />
+    <Compile Include="Assets\Scripts\RenderParticleSystemEffect.cs" />
     <Compile Include="Assets\Scripts\TimerText.cs" />
     <Compile Include="Assets\Scripts\CanvasResultScript.cs" />
+    <Compile Include="Assets\Scripts\LoadingSceneScript.cs" />
     <Compile Include="Assets\Scripts\NavigationController.cs" />
     <Compile Include="Assets\Scripts\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\SpawnCustomerScript.cs" />
-    <Compile Include="Assets\GlobalControl.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

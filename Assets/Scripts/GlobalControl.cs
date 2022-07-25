@@ -6,14 +6,12 @@ public class GlobalControl : MonoBehaviour
 {
     public int level;
     public int[] levelRating;
-    public int money;
-    public int rating;
-    public int day;
+    [SerializeField] private int money;
+    [SerializeField] private int rating = 50;
+    [SerializeField] private int day;
 
     public static GlobalControl Instance;
 
-    //TODO: Save data after every new day
-    // Make a loading scene with _MainGameLogic object
     private void Awake()
     {
         if (Instance == null)
@@ -26,4 +24,8 @@ public class GlobalControl : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public int Money { get { return money; } set { money = value; } }
+    public int Rating { get { return rating; } set { rating = value; } }
+    public int Day { get { return day; } set { day = value; } }
 }
