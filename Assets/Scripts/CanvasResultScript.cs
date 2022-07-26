@@ -68,6 +68,7 @@ public class CanvasResultScript : MonoBehaviour
     {
         endPanel.SetActive(true);
         Time.timeScale = 0;
+        ratingChange = rating - GlobalControl.Instance.Rating;
         totalGain = revenue - rent;
         dayText.text += day.ToString();
         clientsText.text += clients.ToString();

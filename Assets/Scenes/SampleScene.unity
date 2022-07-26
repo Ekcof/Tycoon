@@ -1089,7 +1089,7 @@ MonoBehaviour:
   timerText: {fileID: 437325938}
   startHour: 8
   endHour: 20
-  realSeconds: 20
+  realSeconds: 60
   minuteStep: 10
 --- !u!114 &577619971
 MonoBehaviour:
