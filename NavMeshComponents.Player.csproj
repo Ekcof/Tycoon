@@ -53,21 +53,21 @@
     <UnityVersion>2020.3.23f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshBuilderState.cs" />
-    <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshModifierVolume.cs" />
-    <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshExtension.cs" />
-    <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshSurface.cs" />
-    <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshSurface2d.cs" />
-    <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshExtensionsProvider.cs" />
-    <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshBuilder2d.cs" />
-    <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshCollectRootSources2d.cs" />
-    <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshModifier.cs" />
-    <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshCacheSources2d.cs" />
-    <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshCollectSources2d.cs" />
-    <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshLink.cs" />
+    <Compile Include="Assets\Scripts\NavMeshComponents\Scripts\NavMeshBuilderState.cs" />
+    <Compile Include="Assets\Scripts\NavMeshComponents\Scripts\NavMeshModifierVolume.cs" />
+    <Compile Include="Assets\Scripts\NavMeshComponents\Scripts\NavMeshExtension.cs" />
+    <Compile Include="Assets\Scripts\NavMeshComponents\Scripts\NavMeshSurface.cs" />
+    <Compile Include="Assets\Scripts\NavMeshComponents\Scripts\NavMeshSurface2d.cs" />
+    <Compile Include="Assets\Scripts\NavMeshComponents\Scripts\NavMeshExtensionsProvider.cs" />
+    <Compile Include="Assets\Scripts\NavMeshComponents\Scripts\NavMeshBuilder2d.cs" />
+    <Compile Include="Assets\Scripts\NavMeshComponents\Scripts\NavMeshCollectRootSources2d.cs" />
+    <Compile Include="Assets\Scripts\NavMeshComponents\Scripts\NavMeshModifier.cs" />
+    <Compile Include="Assets\Scripts\NavMeshComponents\Scripts\NavMeshCacheSources2d.cs" />
+    <Compile Include="Assets\Scripts\NavMeshComponents\Scripts\NavMeshCollectSources2d.cs" />
+    <Compile Include="Assets\Scripts\NavMeshComponents\Scripts\NavMeshLink.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\NavMeshComponents\Scripts\NavMeshComponents.asmdef" />
+    <None Include="Assets\Scripts\NavMeshComponents\Scripts\NavMeshComponents.asmdef" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

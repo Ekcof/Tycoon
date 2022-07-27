@@ -54,21 +54,22 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\GlobalControl.cs" />
-    <Compile Include="Assets\Scripts\GetGridScript.cs" />
-    <Compile Include="Assets\Scripts\CardScript.cs" />
-    <Compile Include="Assets\Scripts\ReceptionPointScript.cs" />
-    <Compile Include="Assets\Scripts\CustomerScript.cs" />
-    <Compile Include="Assets\Scripts\TouchInputController.cs" />
-    <Compile Include="Assets\Scripts\CashierPointScript.cs" />
-    <Compile Include="Assets\Scripts\CanvasInput.cs" />
-    <Compile Include="Assets\Scripts\GridCursorScript.cs" />
-    <Compile Include="Assets\Scripts\RenderParticleSystemEffect.cs" />
-    <Compile Include="Assets\Scripts\TimerText.cs" />
-    <Compile Include="Assets\Scripts\CanvasResultScript.cs" />
-    <Compile Include="Assets\Scripts\LoadingSceneScript.cs" />
-    <Compile Include="Assets\Scripts\NavigationController.cs" />
-    <Compile Include="Assets\Scripts\CameraMovement.cs" />
-    <Compile Include="Assets\Scripts\SpawnCustomerScript.cs" />
+    <Compile Include="Assets\Scripts\Navigation\GetGridScript.cs" />
+    <Compile Include="Assets\Scripts\Canvas\CardScript.cs" />
+    <Compile Include="Assets\Scripts\Navigation\ReceptionPointScript.cs" />
+    <Compile Include="Assets\Scripts\Canvas\CustomerScript.cs" />
+    <Compile Include="Assets\Scripts\Player\TouchInputController.cs" />
+    <Compile Include="Assets\Scripts\Canvas\CashierPointScript.cs" />
+    <Compile Include="Assets\Scripts\Canvas\CanvasInput.cs" />
+    <Compile Include="Assets\Scripts\Navigation\GridCursorScript.cs" />
+    <Compile Include="Assets\Scripts\Canvas\RenderParticleSystemEffect.cs" />
+    <Compile Include="Assets\Scripts\Canvas\TimerText.cs" />
+    <Compile Include="Assets\Scripts\Canvas\CanvasResultScript.cs" />
+    <Compile Include="Assets\Scripts\Canvas\LoadingSceneScript.cs" />
+    <Compile Include="Assets\Scripts\Navigation\NavigationController.cs" />
+    <Compile Include="Assets\Scripts\Player\CameraMovement.cs" />
+    <Compile Include="Assets\Scripts\Canvas\SpawnCustomerScript.cs" />
+    <Compile Include="Assets\Scripts\Canvas\SafeArea.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -320,14 +321,14 @@
     <Reference Include="Unity.Mathematics.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="NavMeshComponentsEditor">
-      <HintPath>Library\ScriptAssemblies\NavMeshComponentsEditor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.2D.SpriteShape.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="NavMeshComponentsEditor">
+      <HintPath>Library\ScriptAssemblies\NavMeshComponentsEditor.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\AOT\Newtonsoft.Json.dll</HintPath>
