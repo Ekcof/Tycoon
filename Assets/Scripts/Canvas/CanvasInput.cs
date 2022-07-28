@@ -49,13 +49,28 @@ public class CanvasInput : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Disable the card control
+    /// </summary>
+    public void DisableCardControl()
+    {
+        image.enabled = false;
+        CanvasResultScript.Instance.SetActiveAllChildren(image.transform, false);
+        TouchInputController.Instance.BlockControl = false;
+    }
 
+    /// <summary>
+    /// Start the animation if it's been swiped
+    /// </summary>
     private void AnimateCard()
     {
         animator.SetInteger("Swipe", direction);
         if (direction != 0) SetAnimationFrame();
     }
 
+    /// <summary>
+    /// Get if there was a swipe
+    /// </summary>
     private void GetSwipe()
     {
         switch (touch.phase)
@@ -80,6 +95,9 @@ public class CanvasInput : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Reset all swipe settings
+    /// </summary>
     private void ResetPosition()
     {
         animPercent = 0;
@@ -91,6 +109,9 @@ public class CanvasInput : MonoBehaviour
         animator.Play(idleClip.name, 0, 0);
     }
 
+    /// <summary>
+    /// Cancel the card when it's been swipe left
+    /// </summary>
     private void CancelCard()
     {
         ResetPosition();
@@ -98,18 +119,21 @@ public class CanvasInput : MonoBehaviour
         IsSwiped = false;
     }
 
+    /// <summary>
+    /// Accept the card when it's been swipe right
+    /// </summary>
     private void AcceptCard()
     {
         IsSwiped = true;
         ResetPosition();
         cardScript.AcceptCard();
         IsSwiped = false;
-        //card.SetActive(false);
-        image.enabled = false;
-        CanvasResultScript.Instance.SetActiveAllChildren(image.transform, false);
-        TouchInputController.Instance.BlockControl = false;
+        DisableCardControl();
     }
 
+    /// <summary>
+    /// Change the frame of the card animation when it's been swiped
+    /// </summary>
     private void SetAnimationFrame()
     {
 

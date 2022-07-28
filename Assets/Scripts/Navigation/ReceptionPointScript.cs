@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ReceptionPointScript : MonoBehaviour
@@ -38,6 +36,10 @@ public class ReceptionPointScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Get the current customer's gameobject
+    /// </summary>
+    /// <returns></returns>
     public GameObject GetCustomer()
     {
         return customer;

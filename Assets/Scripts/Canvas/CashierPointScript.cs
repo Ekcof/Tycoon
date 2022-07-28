@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,9 +7,6 @@ public class CashierPointScript : MonoBehaviour
     [SerializeField] private GameObject cashier;
     private ReceptionPointScript receptionPointScript;
     private GameObject customer;
-    private GameObject newCustomer;
-    private float distanceToCashier;
-    private bool isServing;
     private GameObject canvas;
     private GameObject swipeImage;
     private CardScript cardScript;
@@ -24,7 +19,25 @@ public class CashierPointScript : MonoBehaviour
         canvas = GameObject.Find("Canvas");
         if (canvas != null)
         {
-            swipeImage = canvas.transform.Find("SwipeImage").gameObject;
+            Transform swipeTransform = canvas.transform.Find("SwipeImage");
+            if (swipeTransform == null)
+            {
+                for (int i = 0; i < canvas.transform.childCount; ++i)
+                {
+                    Transform child = canvas.transform.GetChild(i);
+                    swipeTransform = child.Find("SwipeImage");
+
+                    if (swipeTransform != null)
+                    {
+                        swipeImage = swipeTransform.gameObject;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                swipeImage = swipeTransform.gameObject;
+            }
         }
     }
 
@@ -41,17 +54,19 @@ public class CashierPointScript : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Initialize the UI elements for satisfying the customer
+    /// </summary>
+    /// <param name="customer"></param>
     private void Serve(GameObject customer)
     {
         if (customer != null && swipeImage != null)
         {
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
             Image image = swipeImage.GetComponent<Image>();
             image.enabled = true;
             CanvasResultScript.Instance.SetActiveAllChildren(swipeImage.transform, true);
             TouchInputController.Instance.BlockControl = true;
-            //swipeImage.SetActive(true);
             customerScript = customer.GetComponent<CustomerScript>();
             if (customerScript != null)
             {
@@ -59,6 +74,5 @@ public class CashierPointScript : MonoBehaviour
                 if (cardScript != null) cardScript.SetCustomerScript(customerScript);
             }
         }
-        //isServing = false;
     }
 }

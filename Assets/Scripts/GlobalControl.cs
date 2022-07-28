@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GlobalControl : MonoBehaviour
 {
+    // Global variables
     public int level;
     public int[] levelRating;
     [SerializeField] private int money;

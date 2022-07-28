@@ -70,6 +70,10 @@ public class TouchInputController : MonoBehaviour
 
     public bool BlockControl { get { return blockControl; } set { blockControl = value; } }
 
+    /// <summary>
+    /// Reset parameters of touch input when it's out of date
+    /// </summary>
+    /// <param name="newTapCount"></param>
     private void ResetParameters(int newTapCount)
     {
         tapCount = newTapCount;

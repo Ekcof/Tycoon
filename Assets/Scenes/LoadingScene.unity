@@ -548,7 +548,7 @@ MonoBehaviour:
   levelRating: 
   money: 0
   rating: 0
-  day: 0
+  day: 1
 --- !u!4 &1536527921
 Transform:
   m_ObjectHideFlags: 0

@@ -16,9 +16,11 @@ public class CanvasResultScript : MonoBehaviour
     [SerializeField] private Text rentText;
     [SerializeField] private Text gainText;
     [SerializeField] private Text ratingText;
+    [SerializeField] private GameObject hintPanel;
     [SerializeField] private int rating = 50;
     [SerializeField] private int priceTag = 10;
     [SerializeField] private int rent = 50;
+    private CanvasInput canvasInput;
     private int clients;
     private int money;
     private int revenue;
@@ -29,6 +31,7 @@ public class CanvasResultScript : MonoBehaviour
     #region Singleton
     private void Awake()
     {
+        canvasInput = GetComponent<CanvasInput>();
         Time.timeScale = 1;
         Instance = this;
         clients = 0;
@@ -42,6 +45,10 @@ public class CanvasResultScript : MonoBehaviour
             day = GlobalControl.Instance.Day;
         }
         RefreshCanvasData();
+        if (day > 1)
+        {
+            hintPanel.SetActive(false);
+        }
     }
     #endregion
 
@@ -66,6 +73,7 @@ public class CanvasResultScript : MonoBehaviour
     /// </summary>
     public void Results()
     {
+        if (canvasInput != null) canvasInput.DisableCardControl();
         endPanel.SetActive(true);
         Time.timeScale = 0;
         ratingChange = rating - GlobalControl.Instance.Rating;
@@ -107,7 +115,7 @@ public class CanvasResultScript : MonoBehaviour
     }
 
     /// <summary>
-    /// add or subtract rating and money after client has been served
+    /// Add or subtract rating and money after client left
     /// </summary>
     /// <param name="addRating"></param>
     /// <param name="addMoney"></param>
@@ -117,6 +125,7 @@ public class CanvasResultScript : MonoBehaviour
         revenue += addMoney;
         rating += addRating;
         if (rating < 0) rating = 0;
+        if (rating > 100) rating = 100;
     }
 
     /// <summary>
