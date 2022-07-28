@@ -5,12 +5,13 @@
 
 Telegram: [@veselio](https://t.me/veselio)
 
-This is the game for mobile devices is about a cashier in the nail studio. You have to guess the customers desire which are represented as numbers by choosing the right card by swipe.
+This is the game for mobile devices is about a cashier in the nail studio. You have to guess the customer's desire which are represented as numbers by choosing the right card by swipe.
 
-![Screen](https://github.com/Ekcof/BeautyTycoon/blob/main/Screen00.jpg)
-![Screen](https://github.com/Ekcof/BeautyTycoon/blob/main/Screen01.jpg)
-![Screen](https://github.com/Ekcof/BeautyTycoon/blob/main/Screen02.jpg)
-### 1. INSTALLATION
+![Screen](https://github.com/Ekcof/BeautyTycoon/blob/main/Screen00.jpg)<br />
+![Screen](https://github.com/Ekcof/BeautyTycoon/blob/main/Screen01.jpg)<br />
+![Screen](https://github.com/Ekcof/BeautyTycoon/blob/main/Screen02.jpg)<br />
+
+###  INSTALLATION
 1. Download this project's Unity package 'BeautyTycoon'.
 2. Add the package in your own Unity Hub and open it.
 
@@ -23,6 +24,6 @@ This is the game for mobile devices is about a cashier in the nail studio. You h
 
 
 ### Third parties
-The following is a list of assets and 3d models that were created by others.<br />
+The following were created by others.<br />
 [NavMesh 2D Pathfiding scripts by h8man](https://github.com/h8man/NavMeshPlus)
 
